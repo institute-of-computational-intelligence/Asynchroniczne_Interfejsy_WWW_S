@@ -1,2 +1,2 @@
-# Asynchroniczne_Interfejsy_WWW_S
+# Asynchroniczne Interfejsy WWW Stacjonarne
 Repozytorium kodu realizowanego w ramach przedmiotu asynchroniczne interfejsy www (studia stacjonarne).
