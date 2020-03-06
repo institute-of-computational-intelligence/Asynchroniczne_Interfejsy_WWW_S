@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJAX.WebApi.Jquery", "AJAX.WebApi.Jquery\AJAX.WebApi.Jquery.csproj", "{56084E54-93F4-4B68-A679-3326C1F075DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJAX.React", "AJAX.React\AJAX.React.csproj", "{99DE3711-8183-4623-A894-9EA6127F5D95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJAX.Angular", "AJAX.Angular\AJAX.Angular.csproj", "{F13DD029-0A21-4367-AE45-5827903543F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJAX.DummyData", "AJAX.DummyData\AJAX.DummyData.csproj", "{E262E4CF-0BE5-421E-BD4C-DAAC0773B22F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56084E54-93F4-4B68-A679-3326C1F075DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56084E54-93F4-4B68-A679-3326C1F075DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56084E54-93F4-4B68-A679-3326C1F075DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56084E54-93F4-4B68-A679-3326C1F075DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99DE3711-8183-4623-A894-9EA6127F5D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99DE3711-8183-4623-A894-9EA6127F5D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99DE3711-8183-4623-A894-9EA6127F5D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99DE3711-8183-4623-A894-9EA6127F5D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13DD029-0A21-4367-AE45-5827903543F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13DD029-0A21-4367-AE45-5827903543F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13DD029-0A21-4367-AE45-5827903543F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13DD029-0A21-4367-AE45-5827903543F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E262E4CF-0BE5-421E-BD4C-DAAC0773B22F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E262E4CF-0BE5-421E-BD4C-DAAC0773B22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E262E4CF-0BE5-421E-BD4C-DAAC0773B22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E262E4CF-0BE5-421E-BD4C-DAAC0773B22F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84BA85F2-10DB-45F3-B042-D86C0BA3E094}
+	EndGlobalSection
+EndGlobal
