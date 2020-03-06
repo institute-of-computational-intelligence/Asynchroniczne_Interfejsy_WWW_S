@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AJAX.DummyData.Models;
+using AJAX.DummyData.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +13,21 @@ namespace AJAX.WebApi.Jquery.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
         // GET: api/Product
         [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+        public IActionResult Get() {
+            return Ok(_productService.Get());
         }
+        //public IEnumerable<string> Get()
+        //{
+        //  
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/Product/5
         [HttpGet("{id}", Name = "Get")]

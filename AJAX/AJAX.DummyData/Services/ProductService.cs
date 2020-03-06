@@ -15,24 +15,30 @@ namespace AJAX.DummyData.Services
         {
             int productIdCount = 1;
             _products = new List<Product>();
-            var availableProducts= new[] { "apple" };
+            var availableProducts= new[] { "apple", "banana", "strawberry" };
             Randomizer.Seed = new Random(8675309);
             _productFake = new Faker<Product>()
                 .StrictMode(true)
-                .RuleFor(x => x.id, f => productIdCount++)
+                .RuleFor(x => x.Id, f => productIdCount++)
                 .RuleFor(x => x.ProductName, f => f.PickRandom(availableProducts))
                 .RuleFor(x => x.Price, f => f.Random.Number(100) + Math.Round(f.Random.Decimal(), 2))
-                 .RuleFor(x => x.Amount, f => f.Random.Number(100) + Math.Round(f.Random.Double(), 2)); ;
+                .RuleFor(x => x.Amount, f => f.Random.Number(100) + Math.Round(f.Random.Double(), 2))
+                .RuleFor(x=>x.ExpirationDate, f=>f.Date.Recent(0)); 
 
         }
         public void Delete(int id)
         {
             throw new NotImplementedException();
         }
-
+        
         public IList<Product> Get()
         {
-            throw new NotImplementedException();
+            if (_products.Count == 0)
+            {
+                int numberOfObjects = new Random().Next(0, 100);
+                _products = _productFake.Generate(numberOfObjects);
+            }
+            return _products;
         }
 
         public Product Get(int id)

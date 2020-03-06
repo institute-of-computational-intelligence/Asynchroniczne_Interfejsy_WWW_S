@@ -6,7 +6,7 @@ namespace AJAX.DummyData.Models
 {
     public class Product
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string ProductName { get; set; }
         public double Amount { get; set; }
         public DateTime ExpirationDate { get; set; }
