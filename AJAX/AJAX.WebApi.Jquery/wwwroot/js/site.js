@@ -62,35 +62,35 @@
 
 
 
-// DELETE
-fetch(`/User/${id}`,
-        { method: 'DELETE' })
-    .then(res => res.json())
-    .then(res => {
-        console.log('Deleted:', res.message);
-        return res;
-    })
-    .catch(err => console.error(err));
+//// DELETE
+//fetch(`/User/${id}`,
+//        { method: 'DELETE' })
+//    .then(res => res.json())
+//    .then(res => {
+//        console.log('Deleted:', res.message);
+//        return res;
+//    })
+//    .catch(err => console.error(err));
 
 
 
-// POST or PUT
-const data = { username: 'example' };
-fetch('https://example.com/profile', {
-        method: 'POST', // or 'PUT'
-        headers: {
-            'Content-Type': 'application/json',
-            "Authorization" : "Bearer {token}"
-        },
-        body: JSON.stringify(data),
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+//// POST or PUT
+//const data = { username: 'example' };
+//fetch('https://example.com/profile', {
+//        method: 'POST', // or 'PUT'
+//        headers: {
+//            'Content-Type': 'application/json',
+//            "Authorization" : "Bearer {token}"
+//        },
+//        body: JSON.stringify(data),
+//    })
+//    .then((response) => response.json())
+//    .then((data) => {
+//        console.log('Success:', data);
+//    })
+//    .catch((error) => {
+//        console.error('Error:', error);
+//    });
 
 
 

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using AJAX.DummyData.Model;
 using AJAX.DummyData.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AJAX.WebApi.Jquery.Controllers
 {
+    [EnableCors("AllowCors")]
     [Route("api/[controller]")]
     public class ProductController : Controller
     {
@@ -52,7 +54,7 @@ namespace AJAX.WebApi.Jquery.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Post([FromBody] Product model)
+        public IActionResult Post([FromForm] Product model)
         {
             try
             {
@@ -65,9 +67,11 @@ namespace AJAX.WebApi.Jquery.Controllers
             }
         }
 
+
+
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Product model)
+        public IActionResult Put(int id, [FromForm] Product model)
         {
             try
             {
