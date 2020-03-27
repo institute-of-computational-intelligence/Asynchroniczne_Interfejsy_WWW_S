@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Add product form</h1>
+  <form (ngSubmit)="onSubmit()" #addProductForm="ngForm">
+    <div class="form-group">
+      <label for="productName">Product name</label>
+      <input type="text" class="form-control" id="productName"
+             required
+             [(ngModel)]="productModel.productName" name="productName"
+             #name="ngModel">
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" class="form-control" id="amount"
+             [(ngModel)]="productModel.amount" name="amount">
+    </div>
+    <div class="form-group">
+      <label for="expirationDate">Amount</label>
+      <input type="date" class="form-control" id="expirationDate"
+             [(ngModel)]="productModel.expirationDate" name="expirationDate">
+    </div>
+    <div class="form-group">
+      <label for="price">Amount</label>
+      <input type="number" class="form-control" id="price"
+             [(ngModel)]="productModel.price" name="price">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
