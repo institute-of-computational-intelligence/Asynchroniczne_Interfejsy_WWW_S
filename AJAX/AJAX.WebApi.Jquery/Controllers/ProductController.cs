@@ -54,7 +54,7 @@ namespace AJAX.WebApi.Jquery.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Post([FromForm] Product model)
+        public IActionResult Post([FromBody] Product model)
         {
             try
             {

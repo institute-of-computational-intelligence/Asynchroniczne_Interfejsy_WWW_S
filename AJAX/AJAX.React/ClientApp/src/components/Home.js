@@ -22,23 +22,26 @@ export class Home extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        var formData = new FormData();
-        formData.append("productName", this.state.model.productName);
-        formData.append("amount", this.state.model.amount);
-        formData.append("price", this.state.model.price);
-        formData.append("expirationDate", this.state.model.expirationDate);
-        await fetch(`https://localhost:44396/api/product`,
+        const result =  await fetch(`https://localhost:44396/api/product`,
             {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 method: 'POST', // or 'PUT'
-                body: formData
+                body: JSON.stringify(this.state.model)
             }
         );
+        if (result.status === 200)
+            console.log("Data are posted.");
+        else {
+            console.err(result.statusText);
+        }
     }
 
     handleChange(event) {
         let modelClone = Object.assign({}, this.state.model);
         const name = event.target.props ? event.target.props.name : event.target.name;
-        modelClone[name] = event.target.value;
+        modelClone[name] = isNaN(event.target.value) ? event.target.value : Number(event.target.value);
         this.setState({ model: modelClone });
     }
 
@@ -53,7 +56,7 @@ export class Home extends Component {
                         </label>
                         <label>
                             Amount:
-                        <input name="amount" type="number" value={this.state.model.amount || ''} onChange={this.handleChange} />
+                        <input name="amount" type="number" value={this.state.model.amount || 0} onChange={this.handleChange} />
                         </label>
                         <label>
                             Expiration date:
@@ -61,7 +64,7 @@ export class Home extends Component {
                         </label>
                         <label>
                             Price:
-                        <input name="price" type="number" value={this.state.model.price || ''} onChange={this.handleChange} />
+                        <input name="price" type="number" value={this.state.model.price || 0} onChange={this.handleChange} />
                         </label>
                         <input type="submit" value="Add" />
                     </form>
