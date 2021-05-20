@@ -6,16 +6,11 @@ namespace RT.SignalR.Chat.JS.DAL
 {
     public class ApplicationDbContext : IdentityDbContext<User, Role, int>
     {
-        private readonly DatabaseOptions _dbOptions;
-        public DbSet<ChatGroup> ChatGroups { get; set; }
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, DatabaseOptions dbOptions)
+        public virtual DbSet<ChatGroup> ChatGroups { get; set; }
+        public virtual DbSet<ChatGroupToUsers> ChatGroupToUsers { get; set; }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            _dbOptions = dbOptions;
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_dbOptions.ConnectionString);
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {

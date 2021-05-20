@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using RT.SignalR.Chat.JS.BLL;
 using RT.SignalR.Chat.JS.Configuration.AutoMapper;
 using RT.SignalR.Chat.JS.DAL;
@@ -30,70 +31,43 @@ namespace RT.SignalR.Chat.JS
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            var dbOptions = new DatabaseOptions
-            {
-                ConnectionString = Configuration.GetConnectionString("DefaultConnection")
-            };
-            services.AddSingleton(dbOptions);
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromMinutes(10);
-                options.Cookie.HttpOnly = true;
-            });
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlServer(dbOptions.ConnectionString);  // SQL SERVER
-                
-            });
-            services.AddIdentity<User, Role>()
-                .AddRoles<Role>()
-                .AddRoleManager<RoleManager<Role>>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddSignInManager<SignInManager<User>>()
-                .AddDefaultUI()
-                .AddDefaultTokenProviders();
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = false;
-            });
             services.AddAutoMapper(typeof(MainProfile));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddRazorPages();
             services.AddSignalR();
+            services.AddControllersWithViews();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            app.UseRouting();
             app.UseAuthentication();
-            app.UseSignalR(routes =>
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapHub<ChatHub>("/chatHub");
-            });
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Chat}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
         
